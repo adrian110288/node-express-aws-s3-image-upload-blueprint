@@ -19,7 +19,7 @@ const upload = multer({
             cb(null, {fieldName: file.fieldname});
         },
         key: function (req, file, cb) {
-            const filename = `hero-${req.params.id}-${Date.now().toString()}`
+            const filename = `${req.params.id}-${Date.now().toString()}`
             cb(null, filename)
         }
     })

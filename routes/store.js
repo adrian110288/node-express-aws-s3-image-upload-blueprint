@@ -7,7 +7,8 @@ const {
     getStore,
     getStores,
     addStore,
-    uploadStoreHero
+    deleteStore,
+    uploadImage
 } = require('../controllers/store');
 
 router.route('/')
@@ -16,8 +17,9 @@ router.route('/')
 
 router.route('/:id')
     .get(getStore)
+    .delete(deleteStore)
 
-router.route('/:id/hero')
-    .put(upload.single('hero'), uploadStoreHero)
+router.route('/:id/image')
+    .put(upload.single('image'), uploadImage)
 
 module.exports = router;

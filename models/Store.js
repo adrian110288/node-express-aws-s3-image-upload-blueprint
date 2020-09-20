@@ -1,16 +1,15 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const {DataTypes} = require('sequelize');
 const sequelize = require('../models/index')
+const Image = require('./Image')
 
-const Store = sequelize.define('Store', {
-    // Model attributes are defined here
+const Store = sequelize.define('store', {
     name: {
         type: DataTypes.STRING,
         allowNull: false
-    },
-    heroUrl: {
-        type: DataTypes.STRING
     }
-}, {
-});
+}, {});
+
+Store.hasMany(Image, { onDelete: 'CASCADE', hooks: true })
+Image.belongsTo(Store)
 
 module.exports = Store
