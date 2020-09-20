@@ -3,6 +3,11 @@ const sequelize = require('../models/index')
 const Store = require('./Store')
 
 const Image = sequelize.define('image', {
+    id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true
+    },
     name: {
         type: DataTypes.STRING
     },
