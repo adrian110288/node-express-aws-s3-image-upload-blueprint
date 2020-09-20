@@ -2,3 +2,4 @@ postgres-data
 uploads
 node_modules
 .idea
+dev.env

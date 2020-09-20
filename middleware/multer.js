@@ -3,16 +3,16 @@ const multer = require('multer')
 const multerS3 = require('multer-s3')
 
 const s3 = new AWS.S3({
-    secretAccessKey: '', // FILL IT
-    accessKeyId: '', // FILL IT
-    region: 'eu-west-2',
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    accessKeyId: process.env.AWS_ACESS_KEY_ID,
+    region: process.env.AWS_S3_REGION,
     apiVersion: '2012-10-17'
 });
 
 const upload = multer({
-    storage: multerS3({
+    storage: multerS3( {
         s3: s3,
-        bucket: 'test-express-image-upload',
+        bucket: process.env.AWS_S3_IMAGE_BUCKET,
         acl: 'public-read',
         contentType: multerS3.AUTO_CONTENT_TYPE,
         metadata: function (req, file, cb) {
