@@ -7,6 +7,9 @@ const getStoreImageFilename = (storeId) => {
 }
 
 const storeImageUpload = multer({
+    limits: {
+        fileSize: 1024 * 1024 * 2 // 2mb
+    },
     storage: multerS3( {
         s3: s3,
         bucket: process.env.AWS_S3_IMAGE_BUCKET,
