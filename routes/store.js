@@ -1,14 +1,16 @@
 require('express-async-errors');
 const express = require('express');
 const router = express.Router();
-const upload = require('../middleware/multer')
+const storeImageUpload = require('../middleware/multer')
 
 const {
     getStore,
     getStores,
     addStore,
     deleteStore,
-    uploadImage
+    uploadImage,
+    removeImage,
+    updateStore
 } = require('../controllers/store');
 
 router.route('/')
@@ -18,8 +20,12 @@ router.route('/')
 router.route('/:id')
     .get(getStore)
     .delete(deleteStore)
+    .patch(updateStore)
 
 router.route('/:id/image')
-    .put(upload.single('image'), uploadImage)
+    .put(storeImageUpload.single('image'), uploadImage)
+
+router.route('/:id/image/:imageid')
+    .delete(removeImage)
 
 module.exports = router;

@@ -8,6 +8,9 @@ const Image = sequelize.define('image', {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true
     },
+    originalName: {
+        type: DataTypes.STRING
+    },
     name: {
         type: DataTypes.STRING
     },

@@ -1,12 +1,12 @@
-require('dotenv').config({ path: './dev.env' })
-
+require('dotenv').config({path: './dev.env'})
 const express = require('express');
 const storeRouter = require('./routes/store');
+const {resolve} = require('path')
 
 const app = express();
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 
 app.use('/store', storeRouter);
 

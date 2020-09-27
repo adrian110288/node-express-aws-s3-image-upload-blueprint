@@ -1,0 +1,193 @@
+{
+	"info": {
+		"_postman_id": "f9239034-cd25-40b6-b2c5-ed59ad83d8b7",
+		"name": "node-image-upload-test-collection",
+		"description": "A collection of request for node-image-upload-test web application\nhttps://github.com/adrian110288/express-aws-s3-image-upload-blueprint",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create store",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e274fb9c-e311-43da-bc7f-b5c1fcb6a59f",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "ff35191b-57e5-47ab-80ea-5343d0e3263c",
+						"exec": [
+							"pm.globals.set('storeId', pm.response.json().id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Store 2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/store/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"store",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get store",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/store/{{storeId}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"store",
+						"{{storeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add store image",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2113e66f-e2d9-4903-951b-bb7dc4f01ba4",
+						"exec": [
+							"pm.globals.set('imageId', pm.response.json().id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/Users/adrianlesniak/Desktop/Screenshot 2020-04-02 at 22.17.18.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/store/{{storeId}}/image",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"store",
+						"{{storeId}}",
+						"image"
+					],
+					"query": [
+						{
+							"key": "store",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove store",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/store/{{storeId}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"store",
+						"{{storeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove store image",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/store/{{storeId}}/image/{{imageId}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"store",
+						"{{storeId}}",
+						"image",
+						"{{imageId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "b3844a7b-f219-422b-a2fb-c5770d926407",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "5af7898f-8da4-48b4-a286-6fa585856a8d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "36b63a16-cc51-41d1-b085-1dc098edcb9a",
+			"key": "host",
+			"value": "http://localhost:3002"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
