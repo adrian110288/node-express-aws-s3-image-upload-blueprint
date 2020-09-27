@@ -4,13 +4,15 @@ const router = express.Router();
 const storeImageUpload = require('../middleware/multer')
 
 const {
+    addStore,
     getStore,
     getStores,
-    addStore,
     deleteStore,
+    updateStore,
     uploadImage,
     removeImage,
-    updateStore
+    getImage,
+    getImages,
 } = require('../controllers/store');
 
 router.route('/')
@@ -23,9 +25,11 @@ router.route('/:id')
     .patch(updateStore)
 
 router.route('/:id/image')
+    .get(getImages)
     .put(storeImageUpload.single('image'), uploadImage)
 
 router.route('/:id/image/:imageid')
+    .get(getImage)
     .delete(removeImage)
 
 module.exports = router;
