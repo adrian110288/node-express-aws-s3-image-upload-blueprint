@@ -11,10 +11,10 @@ exports.addStore = async (req, res) => {
     res.status(201).json(store)
 }
 
-// @desc      Delete store
+// @desc      Remove store
 // @route     DELETE /store
 // @access    Public
-exports.deleteStore = async (req, res) => {
+exports.removeStore = async (req, res) => {
 
     // TODO: Move this to middleware
     const store = await Store.findByPk(req.params.id)

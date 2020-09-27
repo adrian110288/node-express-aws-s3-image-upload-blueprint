@@ -7,7 +7,7 @@ const {
     addStore,
     getStore,
     getStores,
-    deleteStore,
+    removeStore,
     updateStore,
     uploadImage,
     removeImage,
@@ -21,7 +21,7 @@ router.route('/')
 
 router.route('/:id')
     .get(getStore)
-    .delete(deleteStore)
+    .delete(removeStore)
     .patch(updateStore)
 
 router.route('/:id/image')
